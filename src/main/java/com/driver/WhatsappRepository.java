@@ -79,7 +79,7 @@ public class WhatsappRepository {
     }
 
     public boolean isGroupValid(Group group){
-        if(groupMessageMap.containsKey(group)) return true;
+        if(groupUserMap.containsKey(group)) return true;
         return false;
     }
 
