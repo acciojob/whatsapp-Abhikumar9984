@@ -26,8 +26,13 @@ public class WhatsappController {
     public String createUser(String name, String mobile) throws Exception {
         //If the mobile number exists in database, throw "User already exists" exception
         //Otherwise, create the user and return "SUCCESS"
-
-        return whatsappService.createUser(name, mobile);
+        try {
+            String result = whatsappService.createUser(name, mobile);
+            return result;
+        }
+        catch (Exception e){
+            throw new Exception(e.getMessage());
+        }
     }
 
     @PostMapping("/add-group")
@@ -57,8 +62,12 @@ public class WhatsappController {
         //Throw "Group does not exist" if the mentioned group does not exist
         //Throw "You are not allowed to send message" if the sender is not a member of the group
         //If the message is sent successfully, return the final number of messages in that group.
-
-        return whatsappService.sendMessage(message, sender, group);
+        try {
+            return whatsappService.sendMessage(message, sender, group);
+        }
+        catch(Exception e){
+            throw new Exception(e.getMessage());
+        }
     }
     @PutMapping("/change-admin")
     public String changeAdmin(User approver, User user, Group group) throws Exception{
