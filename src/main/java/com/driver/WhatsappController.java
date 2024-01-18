@@ -64,7 +64,7 @@ public class WhatsappController {
         //If the message is sent successfully, return the final number of messages in that group.
         try {
             return whatsappService.sendMessage(message, sender, group);
-        }
+           }
         catch(Exception e){
             throw new Exception(e.getMessage());
         }
