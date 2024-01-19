@@ -50,7 +50,7 @@ public class WhatsappController {
 
         return whatsappService.createMessage(content);
     }
-
+   //u
     @PutMapping("/send-message")
     public int sendMessage(Message message, User sender, Group group) throws Exception{
         //Throw "Group does not exist" if the mentioned group does not exist
