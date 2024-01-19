@@ -41,7 +41,7 @@ public class WhatsappRepository {
     }
 
     public String  createUser(String name , String mobile) throws Exception{
-        if(user.get(mobile) == null) {
+        if(!user.containsKey(mobile)) {
             User newUser = new User(name , mobile);
             user.put(mobile , newUser);
             return "SUCCESS";

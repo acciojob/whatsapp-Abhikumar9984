@@ -11,10 +11,6 @@ public class WhatsappService {
 
     WhatsappRepository whatsappRepository  = new WhatsappRepository();
     public String createUser( String name , String mobile) throws Exception{
-        if(whatsappRepository.getMobile(mobile)){
-            throw new Exception("User already exists");
-        }
-
         return whatsappRepository.createUser(name , mobile);
     }
 
