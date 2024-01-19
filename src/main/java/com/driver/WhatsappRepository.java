@@ -16,7 +16,7 @@ public class WhatsappRepository {
     private HashSet<String> userMobile;
 
     private HashMap<Integer , String> message;
-    private HashMap<String , String> user;
+    private HashMap<String , User> user;
     private int customGroupCount;
     private int messageId;
 
@@ -40,9 +40,15 @@ public class WhatsappRepository {
             return false;
     }
 
-    public String  createUser(String name , String mobile){
-        user.put(name , mobile);
-        return "SUCCESS";
+    public String  createUser(String name , String mobile) throws Exception{
+        if(user.get(mobile) == null) {
+            User newUser = new User(name , mobile);
+            user.put(mobile , newUser);
+            return "SUCCESS";
+        }
+        else{
+             throw new Exception("User already exists");
+        }
     }
 
     public boolean isItAdmin(String name){
