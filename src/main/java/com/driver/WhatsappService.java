@@ -42,14 +42,8 @@ public class WhatsappService {
     }
 
     public int sendMessage(Message message , User sender , Group group) throws Exception{
-        if(whatsappRepository.isGroupValid(group)==false){
-            throw new Exception("Group does not exist");
-        }
-        if(whatsappRepository.isUserTrue(sender , group)==false){
-            throw new Exception("You are not allowed to send message");
-        }
 
-        return whatsappRepository.sendMessage(message , group);
+        return whatsappRepository.sendMessage(message ,sender , group);
     }
 
     public String changeAdmin(User approver , User user , Group group) throws Exception{

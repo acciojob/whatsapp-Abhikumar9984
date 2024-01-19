@@ -97,7 +97,14 @@ public class WhatsappRepository {
         }
         return false;
     }
-    public int sendMessage(Message message , Group group){
+    public int sendMessage(Message message ,User sender , Group group) throws Exception{
+        if(groupUserMap.containsKey(group)==false && groupMessageMap.containsKey(group)==false && adminMap.containsKey(group) == false){
+            throw new Exception("Group does not exist");
+        }
+        List<User> groupList  = groupUserMap.get(group);
+        if(groupList.contains(sender)==false){
+            throw new Exception("You are not allowed to send message");
+        }
         List<Message> temp  = groupMessageMap.get(group);
         temp.add(message);
         return temp.size();
