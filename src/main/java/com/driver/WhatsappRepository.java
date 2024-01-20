@@ -62,21 +62,26 @@ public class WhatsappRepository {
         return false;
     }
 
-    public int getCountOfGroup(){
-        int count  = 0;
-        for(Group group : groupUserMap.keySet()){
-            List<User> temp  = groupUserMap.get(group);
-            if(temp.size()>2)
-                count++;
-        }
-        return count;
-    }
 
-    public Group createGroup(List<User> users ,String name){
-        Group group  = new Group(name , user.size());
-        groupUserMap.put(group , users);
-        groupMessageMap.put(group , new ArrayList<>());
-        return group;
+
+    public Group createGroup(List<User> users ){
+        if(users.size()==2){
+            Group group  = new Group(users.get(1).getName() , 2);
+            adminMap.put(group , users.get(0));
+            groupMessageMap.put(group , new ArrayList<>());
+            groupUserMap.put(group , users);
+            return group;
+        }
+        else{
+            customGroupCount++;
+            String s  = "Group "+customGroupCount;
+            Group group  = new Group(s , users.size());
+            adminMap.put(group , users.get(0));
+            groupMessageMap.put(group , new ArrayList<>());
+            groupUserMap.put(group , users);
+            return group;
+        }
+
     }
 
     public int createMessage(String content){

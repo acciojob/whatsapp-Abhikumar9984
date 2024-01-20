@@ -24,25 +24,7 @@ public class WhatsappService {
         //For example: Consider userList1 = {Alex, Bob, Charlie}, userList2 = {Dan, Evan}, userList3 = {Felix, Graham, Hugh}.
         //If createGroup is called for these userLists in the same order, their group names would be "Group 1", "Evan", and "Group 2" respectively.
 
-        if(users.size()==2){
-            User user1  = users.get(0);
-            String name1  = user1.getName();
-
-            User user2  = users.get(1);
-            String name2  = user2.getName();
-
-
-            Group group  = whatsappRepository.createGroup(users , name2);
-            whatsappRepository.addAdmin(group , user1);
-
-          return group;
-        }
-        else{
-              int count  = whatsappRepository.getCountOfGroup()+1;
-              Group  group  =  whatsappRepository.createGroup(users , "Group "+count);
-              whatsappRepository.addAdmin(group , users.get(0));
-              return group;
-        }
+        return whatsappRepository.createGroup(users);
 
     }
 
