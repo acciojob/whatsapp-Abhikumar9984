@@ -39,7 +39,9 @@ public class WhatsappService {
         }
         else{
               int count  = whatsappRepository.getCountOfGroup()+1;
-              return whatsappRepository.createGroup(users , "Group "+count);
+              Group  group  =  whatsappRepository.createGroup(users , "Group "+count);
+              whatsappRepository.addAdmin(group , users.get(0));
+              return group;
         }
 
     }
