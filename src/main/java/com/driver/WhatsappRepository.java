@@ -75,7 +75,7 @@ public class WhatsappRepository {
     public Group createGroup(List<User> users ,String name){
         Group group  = new Group(name , user.size());
         groupUserMap.put(group , users);
-
+        groupMessageMap.put(group , new ArrayList<>());
         return group;
     }
 
