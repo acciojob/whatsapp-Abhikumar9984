@@ -50,7 +50,9 @@ public class WhatsappRepository {
              throw new Exception("User already exists");
         }
     }
-
+    public void addAdmin(Group group , User user){
+        adminMap.put(group , user);
+    }
     public boolean isItAdmin(String name){
         for(Group group : adminMap.keySet()){
             User user  = adminMap.get(group);
@@ -62,7 +64,7 @@ public class WhatsappRepository {
 
     public int getCountOfGroup(){
         int count  = 0;
-        for(Group group : groupMessageMap.keySet()){
+        for(Group group : groupUserMap.keySet()){
             List<User> temp  = groupUserMap.get(group);
             if(temp.size()>2)
                 count++;
@@ -99,7 +101,7 @@ public class WhatsappRepository {
     }
     public int sendMessage(Message message ,User sender , Group group) throws Exception{
         if(groupUserMap.containsKey(group) == false){
-            throw new Exception("Group does not exist");
+             throw new Exception("Group does not exist");
         }
         List<User> groupList  = groupUserMap.get(group);
         if(groupList.contains(sender)==false){
@@ -107,6 +109,7 @@ public class WhatsappRepository {
         }
         List<Message> temp  = groupMessageMap.get(group);
         temp.add(message);
+        groupMessageMap.put(group , temp);
         return temp.size();
     }
 
